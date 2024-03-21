@@ -1,0 +1,24 @@
+#fibonacci-container {
+    display: none;
+    width: 19rem;
+    overflow:auto;
+    margin-top: 20px;
+}
+
+button {
+    cursor: pointer;
+    padding: 10px;
+    background-color: rgb(196, 195, 195);
+    border: none;
+    color: rgb(38, 38, 38);
+}
+
+button:hover {
+    background-color: rgb(157, 156, 156);
+}
+
+input {
+    padding: 10px;
+    border: none;
+    background-color: rgb(196, 195, 195);
+}
