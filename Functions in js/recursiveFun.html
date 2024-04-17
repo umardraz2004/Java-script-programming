@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursive functions in js</title>
+</head>
+<body>
+    <input type="text" id="input">
+    <script>
+        const input = document.getElementById('input');
+        var value;
+        input.addEventListener('keypress', function(e){
+            if(e.key == 'Enter'){
+                value = parseInt(input.value)
+                loop(value);
+            }
+        });
+        function loop(x) {
+            if(x >=11){
+                setTimeout(function(){
+                    location.reload();
+                }, 5000);
+                return x;
+            }
+            else{
+                console.log(x);
+                loop(x+1);
+            }
+        }
+    </script>
+</body>
+</html>
