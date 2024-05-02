@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For in statement</title>
+    <style>
+        #btn {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>For of statement</h1>
+    <button id="btn">Print</button>
+    <div id="displayInArray"></div>
+    <script>
+        var display = document.getElementById('displayInArray');
+        var btn = document.getElementById('btn');
+        var elements = [1,2,3,4,5,6,7,8,9,10,11];
+        btn.addEventListener('click', function(e){
+            for(value of elements) {
+                //in for in statement value is a value of elements
+                display.innerHTML += `${value} `;
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+#myInput {
+    font-size: 1.5rem;
+}
+
+#fetchData {
+    font-size: 1.5rem;
+}
+
+#pokeImg {
+    margin-top: 20px;
+    display: none;
+    width: 20%;
+}
