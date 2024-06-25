@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Fetching data</h1>
+    <div id="result"></div>
+    <div id="retry"></div>
+    <script>
+        let limit = 3;
+        let attempt = 0;
+        function fetchDataFromApi() {
+            let randomNumber = Math.floor(Math.random() * 100) + 1;
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (randomNumber > 50) {
+                        resolve("Successfully Fetched");
+                    }
+                    else {
+                        reject("There is a network or server issue!")
+                    }
+                }, 1000);
+            });
+        }
+
+        function tryAgain() {
+            attempt++;
+            if(attempt <= limit) {
+                fetchDataFromApi()
+                .then((message) => {
+                    document.getElementById('result').textContent = message;
+                    document.getElementById('retry').textContent = "";
+                })
+                .catch((error) => {
+                    document.getElementById('result').textContent = error;
+                    document.getElementById('retry').textContent = `Trying again! ${attempt}`;
+                    tryAgain();
+                });
+            }
+            else{
+                document.getElementById('retry').textContent = "Limit reached!";
+                return;
+            }
+        }
+        tryAgain();
+    </script>
+</body>
+
+</html>

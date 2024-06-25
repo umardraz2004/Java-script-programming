@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Loading Data</h1>
+    <ul id="dataList"></ul>
+    <script>
+        function fetchData(source) {
+            return new Promise((resolve,reject) => {
+                setTimeout(() => {
+                    resolve(`Data from ${source}`);
+                }, Math.random() * 5000);
+            });
+        }
+
+        fetchData("Source 1")
+        .then((data) => {
+            appendDataToList(data);
+            return fetchData("Source 2");
+        })
+        .then((data) => {
+            appendDataToList(data);
+            return fetchData("Source 3");
+        })
+        .then((data) => {
+            appendDataToList(data);
+            console.log("All data loaded successfully.");
+        })
+        .catch((error) => {
+            console.error('Error loading data:', error);
+        });
+
+        function appendDataToList(data) {
+            let listItem = document.createElement('li');
+            listItem.textContent = data;
+            document.getElementById('dataList').appendChild(listItem);
+        }
+    </script>
+</body>
+</html>

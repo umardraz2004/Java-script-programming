@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Fetching data form Multiple Sources</h1>
+    <ul id="dataList"></ul>
+    <div id="error"></div>
+    <script>
+        function fetchDataFromSource1() {
+            let randomNumber1 = Math.floor(Math.random() * 100) + 1;
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (randomNumber1 > 50) {
+                        resolve("Successfully Fetched From Source 1");
+                    }
+                    else {
+                        reject("There is a issue in server 1!");
+                    }
+                }, 1000);
+            });
+        }
+        function fetchDataFromSource2() {
+            let randomNumber2 = Math.floor(Math.random() * 100) + 1;
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (randomNumber2 > 50) {
+                        resolve("Successfully Fetched From Source 2");
+                    }
+                    else {
+                        reject("There is a issue in server 2!");
+                    }
+                }, 1000);
+            });
+        }
+        function fetchDataFromSource3() {
+            let randomNumber3 = Math.floor(Math.random() * 100) + 1;
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (randomNumber3 > 50) {
+                        resolve("Successfully Fetched From Source 3");
+                    }
+                    else {
+                        reject("There is a issue in server 3!");
+                    }
+                }, 1000);
+            });
+        }
+
+        
+        function timeoutPromise(duration) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    reject("Request Time Out!");
+                }, duration);
+            });
+        }
+
+        Promise.race([
+            Promise.all([fetchDataFromSource1(),fetchDataFromSource2(),fetchDataFromSource3()]),
+            timeoutPromise(5000)
+        ])
+            .then((results) => {
+                results.forEach(result => {
+                    let listItem = document.createElement('li');
+                    listItem.textContent = result;
+                    document.getElementById('dataList').appendChild(listItem);
+                });
+            })
+            .catch((error) => {
+                document.getElementById('error').textContent = error;
+            });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1></h1>
+    <script>
+        let randomOutcome = new Promise((resolve, reject) => {
+            let randomNumber = Math.floor(Math.random() * 100) + 1;
+            setTimeout(() => {
+                if(randomNumber > 50) {
+                    resolve("Success!");
+                }
+                else{
+                    reject("Failure!");
+                }
+            }, 1000);
+        });
+        randomOutcome.then((message) => {
+            document.querySelector('h1').textContent = message;
+        })
+        .catch((error) => {
+            document.querySelector('h1').textContent = error;
+        });
+    </script>
+</body>
+</html>

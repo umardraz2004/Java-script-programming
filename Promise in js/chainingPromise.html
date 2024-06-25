@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1></h1>
+    <script>
+        let initialNumber = 10;
+        let chainPromise = new Promise((resolve, reject) => {
+            resolve(initialNumber);
+        });
+        chainPromise
+        .then((result) => {
+            return result + 10;
+        })
+        .then((result) => {
+            return result * 2;
+        })
+        .then((result) => {
+            return result - 5;
+        })
+        .then((result) => {
+            document.querySelector('h1').textContent = result;
+        });
+    </script>
+</body>
+</html>
